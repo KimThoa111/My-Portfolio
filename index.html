@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lưu Thị Kim Thoa — Business Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #1A56DB;
+    --blue-light: #EFF6FF;
+    --blue-mid: #BFDBFE;
+    --dark: #0F172A;
+    --dark2: #1E293B;
+    --slate: #475569;
+    --text: #334155;
+    --muted: #94A3B8;
+    --white: #FFFFFF;
+    --bg: #F8FAFC;
+    --border: #E2E8F0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Google Sans Text', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(248,250,252,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem; color: var(--dark);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;
+    color: var(--slate); text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 6rem 5rem 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,86,219,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,86,219,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue-light); border: 1px solid var(--blue-mid);
+    color: var(--blue); padding: 6px 16px; border-radius: 100px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    animation: fadeSlideUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--blue);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05;
+    color: var(--dark);
+    margin-bottom: 1.2rem;
+    animation: fadeSlideUp 0.6s 0.1s ease both;
+  }
+  .hero-name em { color: var(--blue); font-style: italic; }
+
+  .hero-tagline {
+    font-size: 1.1rem; color: var(--slate); line-height: 1.7;
+    max-width: 500px; margin-bottom: 2.5rem;
+    animation: fadeSlideUp 0.6s 0.2s ease both;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeSlideUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue); color: white;
+    padding: 14px 28px; border-radius: 10px;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 0.02em;
+    text-decoration: none; transition: all 0.2s;
+    box-shadow: 0 4px 24px rgba(26,86,219,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26,86,219,0.4); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: white; color: var(--dark);
+    padding: 14px 28px; border-radius: 10px;
+    font-weight: 700; font-size: 0.9rem;
+    text-decoration: none; border: 1.5px solid var(--border);
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+    animation: fadeSlideUp 0.6s 0.4s ease both;
+  }
+  .stat {
+    text-align: center; padding: 1.2rem;
+    background: white; border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: transform 0.2s;
+  }
+  .stat:hover { transform: translateY(-4px); }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem; color: var(--blue); display: block;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Hero visual */
+  .hero-visual {
+    display: flex; flex-direction: column; gap: 1.2rem;
+    animation: fadeSlideUp 0.6s 0.2s ease both;
+  }
+  .card-float {
+    background: white; border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    padding: 1.4rem 1.8rem;
+    transition: transform 0.3s;
+  }
+  .card-float:hover { transform: translateX(-6px); }
+  .card-float.accent {
+    background: var(--dark); color: white;
+    border-color: var(--dark);
+  }
+  .card-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+  .card-float.accent .card-label { color: rgba(255,255,255,0.5); }
+  .card-value { font-size: 1rem; font-weight: 700; color: var(--dark); }
+  .card-float.accent .card-value { color: white; }
+  .card-sub { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+  .card-float.accent .card-sub { color: rgba(255,255,255,0.5); }
+
+  .progress-wrap { margin-top: 0.6rem; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--muted); margin-bottom: 4px; }
+  .progress-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--blue), #3B82F6); border-radius: 3px; transition: width 1.5s ease; }
+
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.8rem; }
+  .tag {
+    background: var(--blue-light); color: var(--blue);
+    padding: 4px 12px; border-radius: 100px;
+    font-size: 0.78rem; font-weight: 600;
+  }
+  .card-float.accent .tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); }
+
+  /* SECTIONS */
+  section { padding: 6rem 5rem; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 1rem;
+  }
+  .section-label::before {
+    content: ''; width: 24px; height: 2px; background: var(--blue);
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--dark); line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-desc { color: var(--slate); font-size: 1rem; max-width: 600px; line-height: 1.7; margin-bottom: 3rem; }
+
+  /* EXPERIENCE */
+  .exp-bg { background: white; }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--blue), var(--blue-mid), transparent);
+  }
+  .timeline-item {
+    padding-left: 60px; margin-bottom: 3.5rem; position: relative;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+  .timeline-dot {
+    position: absolute; left: 10px; top: 6px;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--blue); border: 4px solid white;
+    box-shadow: 0 0 0 2px var(--blue);
+  }
+  .exp-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;
+  }
+  .exp-role { font-size: 1.15rem; font-weight: 700; color: var(--dark); }
+  .exp-company { color: var(--blue); font-weight: 700; font-size: 0.95rem; }
+  .exp-period {
+    background: var(--blue-light); color: var(--blue);
+    padding: 4px 14px; border-radius: 100px;
+    font-size: 0.78rem; font-weight: 600; white-space: nowrap;
+  }
+  .exp-bullets { list-style: none; margin-top: 1rem; }
+  .exp-bullets li {
+    display: flex; gap: 10px; margin-bottom: 0.55rem;
+    font-size: 0.9rem; color: var(--text); line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '▸'; color: var(--blue); font-size: 0.8rem;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  /* SKILLS */
+  .skills-bg { background: var(--dark); }
+  .skills-bg .section-title { color: white; }
+  .skills-bg .section-desc { color: rgba(255,255,255,0.5); }
+  .skills-bg .section-label { color: #60A5FA; }
+  .skills-bg .section-label::before { background: #60A5FA; }
+
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  .skill-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 1.4rem 1.2rem;
+    text-align: center; transition: all 0.3s;
+    cursor: default;
+  }
+  .skill-card:hover {
+    background: rgba(26,86,219,0.2);
+    border-color: rgba(26,86,219,0.5);
+    transform: translateY(-4px);
+  }
+  .skill-icon { font-size: 2rem; margin-bottom: 0.7rem; display: block; }
+  .skill-name { font-size: 0.88rem; font-weight: 700; color: white; margin-bottom: 4px; }
+  .skill-level { font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.8rem;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), #60A5FA);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+  .project-card:hover::before { opacity: 1; }
+  .project-type {
+    display: inline-block; background: var(--blue-light); color: var(--blue);
+    padding: 3px 12px; border-radius: 100px;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+  .project-name { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
+  .project-desc { font-size: 0.87rem; color: var(--slate); line-height: 1.6; }
+
+  /* CONTACT */
+  .contact-bg {
+    background: linear-gradient(135deg, var(--dark) 0%, #1E3A8A 100%);
+    text-align: center;
+  }
+  .contact-bg .section-title { color: white; }
+  .contact-bg .section-desc { color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto 2.5rem; }
+  .contact-items {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .contact-chip {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    padding: 12px 24px; border-radius: 100px; color: white;
+    font-size: 0.9rem; font-weight: 600; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .contact-chip:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark2); padding: 2rem 5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-text { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
+  .footer-name { color: white; font-weight: 700; }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 2rem 3rem; }
+    .hero-visual { display: none; }
+    section { padding: 4rem 2rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">KT <span>·</span> Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about">Về Tôi</a></li>
+    <li><a href="#experience">Kinh Nghiệm</a></li>
+    <li><a href="#skills">Kỹ Năng</a></li>
+    <li><a href="#projects">Dự Án</a></li>
+    <li><a href="#contact">Liên Hệ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-content">
+    <div class="hero-badge">Business Analyst · Odoo ERP</div>
+    <h1 class="hero-name">Luu Thi<br><em>Kim Thoa</em></h1>
+    <p class="hero-tagline">
+      Với 4 năm kinh nghiệm triển khai hệ thống ERP Odoo — từ phân tích yêu cầu, thiết kế quy trình đến testing và tài liệu hóa. Cầu nối giữa nghiệp vụ và công nghệ.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">📬 Liên Hệ Ngay</a>
+      <a href="#experience" class="btn-ghost">Xem Kinh Nghiệm →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">4+</span>
+        <span class="stat-label">Năm Kinh Nghiệm</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">8+</span>
+        <span class="stat-label">Dự Án</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Công Ty Đã Làm Việc</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="card-float accent">
+      <div class="card-label">Hiện đang làm việc tại</div>
+      <div class="card-value">MID VIETNAM Electronic Technology</div>
+      <div class="card-sub">Business Analyst (Odoo) · 08/2025 – Hiện tại</div>
+      <div class="tag-cloud">
+        <span class="tag">Odoo</span>
+        <span class="tag">ERP</span>
+        <span class="tag">Wireframe</span>
+        <span class="tag">Testing</span>
+      </div>
+    </div>
+
+    <div class="card-float">
+      <div class="card-label">Mức độ thành thạo Odoo</div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Business Analysis</span><span>95%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
+      </div>
+      <div class="progress-wrap" style="margin-top:10px">
+        <div class="progress-label"><span>Odoo Configuration</span><span>90%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+      </div>
+      <div class="progress-wrap" style="margin-top:10px">
+        <div class="progress-label"><span>Test Case</span><span>88%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div>
+      </div>
+    </div>
+
+    <div class="card-float">
+      <div class="card-label">Thông tin liên hệ</div>
+      <div class="card-value">📍 Quận 5, TP. HCM</div>
+      <div class="card-sub">📞 0911 861 538 · ✉ thoakonic2809@gmail.com</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-bg" id="experience">
+  <div class="section-label">Work Experience</div>
+  <h2 class="section-title">Kinh Nghiệm<br>Làm Việc</h2>
+  <p class="section-desc">Hành trình từ Data Intern đến Business Analyst Odoo với nhiều dự án ERP thực tiễn.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Business Analyst (Odoo)</div>
+          <div class="exp-company">MID VIETNAM Electronic Technology Development JSC</div>
+        </div>
+        <span class="exp-period">2025 – Hiện tại</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Phân tích yêu cầu nghiệp vụ phức tạp và thiết kế giải pháp hệ thống phù hợp từng doanh nghiệp.</li>
+        <li>Thiết kế wireframe & mockup cho các module Odoo tùy chỉnh bằng Figma, đảm bảo UX trước khi dev.</li>
+        <li>Cấu hình module core Odoo: Sales, Inventory, Accounting, Manufacturing.</li>
+        <li>Xây dựng test case và thực hiện manual/functional testing, đảm bảo 0 lỗi trước khi go-live.</li>
+        <li>Làm sạch, mapping và import dữ liệu bằng Odoo import tools hoặc CSV/Excel templates.</li>
+        <li>Biên soạn tài liệu nghiệp vụ, sơ đồ quy trình, user manual rõ ràng cho dev và end-user.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Business Analyst (Odoo)</div>
+          <div class="exp-company">TIEN PHONG CDS Company</div>
+        </div>
+        <span class="exp-period">02/2022 – 08/2025</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Phân tích yêu cầu khách hàng, xây dựng process blueprint và xác định phạm vi dự án.</li>
+        <li>Tùy chỉnh và nâng cao chức năng module Odoo để phù hợp mục tiêu vận hành tổ chức.</li>
+        <li>Điều phối triển khai sang đội phát triển, theo dõi và hỗ trợ điều chỉnh tính năng.</li>
+        <li>Lập kế hoạch và thực thi kiểm thử toàn diện, manual testing sau mỗi giai đoạn tùy chỉnh.</li>
+        <li>Quản lý phân tích dữ liệu, giám sát import/export và duy trì tài liệu module hệ thống.</li>
+        <li>Theo dõi hoạt động user, fix lỗi phát sinh và cung cấp hỗ trợ kỹ thuật trực tiếp.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Data Intern</div>
+          <div class="exp-company">QT DATA INC.</div>
+        </div>
+        <span class="exp-period">07/2017 – 08/2020</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Biên soạn tài liệu hướng dẫn sử dụng extension & công cụ nâng cao trải nghiệm khách hàng.</li>
+        <li>Chỉnh sửa source code tối ưu quy trình gửi email tự động.</li>
+        <li>Nghiên cứu và tổng hợp dữ liệu về công ty quốc tế tiềm năng (lãnh đạo, liên hệ, đầu tư).</li>
+        <li>Quản lý và bảo trì website công ty, đảm bảo thông tin luôn cập nhật.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Teaching Assistant</div>
+          <div class="exp-company">UNILEVER Vietnam</div>
+        </div>
+        <span class="exp-period">2020</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Phát triển tài liệu giảng dạy sáng tạo, nâng cao hiệu quả hướng dẫn.</li>
+        <li>Hỗ trợ học viên sau buổi học để củng cố kết quả học tập.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-bg" id="skills">
+  <div class="section-label" style="color:#60A5FA">Skills & Tools</div>
+  <h2 class="section-title" style="color:white">Kỹ Năng &<br>Công Cụ</h2>
+  <p class="section-desc" style="color:rgba(255,255,255,0.5);margin-bottom:2.5rem">Bộ công cụ và kỹ năng giúp tôi biến yêu cầu nghiệp vụ thành giải pháp hệ thống hiệu quả.</p>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <span class="skill-icon">🔧</span>
+      <div class="skill-name">Odoo ERP</div>
+      <div class="skill-level">Chuyên sâu</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">📊</span>
+      <div class="skill-name">Business Analysis</div>
+      <div class="skill-level">Chuyên sâu</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🎨</span>
+      <div class="skill-name">Figma</div>
+      <div class="skill-level">Thành thạo</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🗺️</span>
+      <div class="skill-name">draw.io</div>
+      <div class="skill-level">Thành thạo</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🧪</span>
+      <div class="skill-name">Manual Testing</div>
+      <div class="skill-level">Chuyên sâu</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">📋</span>
+      <div class="skill-name">Documentation</div>
+      <div class="skill-level">Chuyên sâu</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">📁</span>
+      <div class="skill-name">Data Management</div>
+      <div class="skill-level">Thành thạo</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">💼</span>
+      <div class="skill-name">Microsoft Office</div>
+      <div class="skill-level">Thành thạo</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🌐</span>
+      <div class="skill-name">HTML</div>
+      <div class="skill-level">Cơ bản</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🤖</span>
+      <div class="skill-name">AI Tools</div>
+      <div class="skill-level">Thành thạo</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🔄</span>
+      <div class="skill-name">Process Design</div>
+      <div class="skill-level">Chuyên sâu</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">💬</span>
+      <div class="skill-name">Communication</div>
+      <div class="skill-level">Tốt</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title">Dự Án<br>Tiêu Biểu</h2>
+  <p class="section-desc">Các dự án ERP Odoo thực tiễn tôi đã tham gia triển khai trực tiếp.</p>
+
+  <div class="projects-grid">
+    <div class="project-card">
+      <span class="project-type">ERP · Odoo</span>
+      <div class="project-name">Đại Long Cable</div>
+      <div class="project-desc">Triển khai hệ thống quản trị toàn diện cho doanh nghiệp sản xuất dây cáp điện. Tùy chỉnh module Project, Sale, Purchase, Inventory, Manufacturing & Quality Control theo đặc thù sản xuất.</div>
+    </div>
+    <div class="project-card">
+      <span class="project-type">ERP · Odoo</span>
+      <div class="project-name">ePro – ERP System</div>
+      <div class="project-desc">Phân tích và triển khai hệ thống ERP cho doanh nghiệp, tùy chỉnh quy trình mua hàng và quản lý kho theo yêu cầu thực tế.</div>
+    </div>
+    <div class="project-card">
+      <span class="project-type">ERP · Odoo</span>
+      <div class="project-name">Dai Thuan – ERP</div>
+      <div class="project-desc">Cấu hình và tùy chỉnh các module core Odoo. Thực hiện data migration, viết user manual và đào tạo người dùng cuối.</div>
+    </div>
+    <div class="project-card">
+      <span class="project-type">App Mobile & ERP</span>
+      <div class="project-name">SCTech</div>
+      <div class="project-desc">Dự án kết hợp ứng dụng mobile và hệ thống ERP Odoo. Thiết kế wireframe và phân tích luồng dữ liệu giữa app và backend.</div>
+    </div>
+    <div class="project-card">
+      <span class="project-type">MLM System</span>
+      <div class="project-name">Nuoc Mam Chat – MLM</div>
+      <div class="project-desc">Phân tích và triển khai hệ thống MLM, thiết kế cấu trúc hoa hồng và quản lý mạng lưới đại lý phân phối.</div>
+    </div>
+    <div class="project-card">
+      <span class="project-type">TMS · Odoo</span>
+      <div class="project-name">Flight Training Center VNA</div>
+      <div class="project-desc">Triển khai hệ thống quản lý đào tạo (TMS) cho Trung tâm Đào tạo bay VNA, tích hợp Odoo với quy trình đặc thù hàng không.</div>
+    </div>
+    <div class="project-card">
+      <span class="project-type">ERP · Odoo</span>
+      <div class="project-name">VNPT Technology</div>
+      <div class="project-desc">Triển khai ERP Odoo cho tập đoàn công nghệ viễn thông lớn. Phối hợp với nhiều phòng ban, quản lý tài liệu toàn diện.</div>
+    </div>
+    <div class="project-card">
+      <span class="project-type">MLM · Supporter</span>
+      <div class="project-name">Bao Duy PCCC – MLM</div>
+      <div class="project-desc">Hỗ trợ phân tích và cấu hình hệ thống MLM cho doanh nghiệp PCCC, đảm bảo luồng nghiệp vụ chính xác và hiệu quả.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-bg" id="contact">
+  <div class="section-label" style="color:#93C5FD;justify-content:center">
+    <span style="background:#93C5FD;width:24px;height:2px;display:inline-block"></span>
+    Get In Touch
+  </div>
+  <h2 class="section-title" style="margin-bottom:1rem">Liên Hệ Với Tôi</h2>
+  <p class="section-desc">Bạn đang tìm kiếm một Business Analyst Odoo có kinh nghiệm thực chiến? Hãy kết nối với tôi!</p>
+
+  <div class="contact-items">
+    <a href="tel:0911861538" class="contact-chip">📞 0911 861 538</a>
+    <a href="mailto:thoakonic2809@gmail.com" class="contact-chip">✉ thoakonic2809@gmail.com</a>
+    <span class="contact-chip">📍 Quận 5, TP. Hồ Chí Minh</span>
+  </div>
+  <a href="mailto:thoakonic2809@gmail.com" class="btn-primary" style="display:inline-flex">Gửi Email Ngay 🚀</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">© 2025 <span class="footer-name">Lưu Thị Kim Thoa</span>. All rights reserved.</div>
+  <div class="footer-text">Business Analyst · Odoo ERP</div>
+</footer>
+
+<script>
+  // Intersection Observer for timeline animations
+  const items = document.querySelectorAll('.timeline-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 120);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(item => observer.observe(item));
+
+  // Smooth nav scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
